@@ -3,49 +3,48 @@ package Implementaciones;
 import TDAs.ColaTDA;
 
 public class ColaEstaticaA extends ColaTDA {
+
     private int[] datos;
-    private int inicio;     // indice del primer elemento
-    private int fin;        // indice del proximo lugar libre
-    private int cantidad;   // cuantos elementos hay actualmente
+    private int frente;   // indice del primer elemento
+    private int cantidad; // cuantos elementos hay
     private int capacidad;
 
     public ColaEstaticaA(int capacidad) {
         this.capacidad = capacidad;
         this.datos = new int[capacidad];
-        this.inicio = 0;
-        this.fin = 0;
+        this.frente = 0;
         this.cantidad = 0;
     }
 
-    // esVacia(c) -> boolean
-    public boolean esVacia() {
-        return cantidad == 0;
-    }
-
+    @Override
     public void encolar(int x) {
-        if (cantidad == capacidad) {
+        if (frente + cantidad == capacidad) {
             throw new RuntimeException("Cola llena");
         }
-        datos[fin] = x;
-        fin = (fin + 1) % capacidad;   // clave: circular, "da la vuelta" al 0
+        datos[frente + cantidad] = x;
         cantidad++;
     }
 
-    // desencolar(c) -> Cola
+    @Override
     public void desencolar() {
         if (esVacia()) {
             throw new RuntimeException("Cola vacia");
         }
-        inicio = (inicio + 1) % capacidad;  // clave: circular
+        // No se corre nada. Se pierde espacio
+        frente++;
         cantidad--;
     }
 
-    // primero(c) -> elemento
+    @Override
     public int primero() {
         if (esVacia()) {
             throw new RuntimeException("Cola vacia");
         }
-        return datos[inicio];
+        return datos[frente];
     }
 
+    @Override
+    public boolean esVacia() {
+        return cantidad == 0;
+    }
 }
