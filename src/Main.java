@@ -1,4 +1,6 @@
+import Implementaciones.ColaEstaticaA;
 import Implementaciones.PilaEstaticaA;
+import TDAs.ColaTDA;
 import TDAs.PilaTDA;
 
 public class Main {
@@ -18,5 +20,23 @@ public class Main {
 
         System.out.println("Pila: " + p2);
         System.out.println("Tope: " + p2.tope());
+
+
+        ColaTDA c1 = new ColaEstaticaA(100);
+        c1.encolar(3);
+        c1.encolar(3);
+        c1.encolar(1);
+
+        ColaTDA c2 = new ColaEstaticaA(100);
+        c2.encolar(3);
+        c2.encolar(3);
+        c2.encolar(3);
+
+        System.out.println(Metodos.finalCoincide(c1,c2,3));
+
+        //System.out.println(c1.primero());
+        //System.out.println(c2.primero());
+
+
     }
 }

@@ -1,6 +1,8 @@
+import Implementaciones.ColaEstaticaA;
 import Implementaciones.ColaPrioridadA;
 import Implementaciones.PilaEstaticaA;
 import TDAs.ColaPrioridadTDA;
+import TDAs.ColaTDA;
 import TDAs.PilaTDA;
 
 public class Metodos {
@@ -123,7 +125,102 @@ public class Metodos {
 
     // SECCION METODOS COLA
 
+    public static ColaTDA pasarCola(ColaTDA origen) {
+        ColaTDA aux = new ColaEstaticaA(100);
+        ColaTDA nuevaCola = new ColaEstaticaA(100);
 
+        // 1. Apila el tope de origen en aux y desapila origen
+        while (!origen.esVacia()) {
+            aux.encolar(origen.primero());
+            origen.desencolar();
+        }
+
+        // 2. Lo mismo que antes pero de aux a la nuevaCola
+        while (!aux.esVacia()) {
+            nuevaCola.encolar(aux.primero());
+            aux.desencolar();
+        }
+
+        return nuevaCola;
+    }
+
+    public static ColaTDA invertirColaConPila(ColaTDA origen){
+        ColaTDA colaInvertida = new ColaEstaticaA(100);
+        PilaTDA aux = new PilaEstaticaA(100);
+
+        while(!origen.esVacia()){
+            aux.apilar(origen.primero());
+            origen.desencolar();
+        }
+        while(!aux.esVacia()){
+            colaInvertida.encolar(aux.tope());
+            aux.desapilar();
+        }
+        return colaInvertida;
+    }
+
+    public static ColaTDA invertirColaSinPila(ColaTDA origen){
+        if (origen.esVacia()) {
+            return origen; // caso base: cola vacia -> no hay nada que invertir
+        }
+
+        int primero = origen.primero();
+        origen.desencolar();
+        invertirColaSinPila(origen); // invierte recursivamente el resto de la cola
+        System.out.println(primero);
+        origen.encolar(primero); // al volver, el que era el primero pasa al final
+        return origen;
+    }
+
+    public static boolean finalCoincide(ColaTDA c1, ColaTDA c2, int k){
+
+
+        PilaTDA aux1 = new PilaEstaticaA(100);
+        PilaTDA aux2 = new PilaEstaticaA(100);
+
+        while(!c1.esVacia()){
+            aux1.apilar(c1.primero());
+            c1.desencolar();
+        }
+        while(!c2.esVacia()){
+            aux2.apilar(c2.primero());
+            c2.desencolar();
+        }
+
+        int cont = 0;
+        int coincidencia = 0;
+        while (k>cont){
+
+            int a = aux1.tope();
+            int b = aux2.tope();
+
+            if (a==b) {
+                coincidencia ++;
+            }
+            c1.encolar(aux1.tope());
+            aux1.desapilar();
+            c2.encolar(aux2.tope());
+            aux2.desapilar();
+
+            cont ++;
+        }
+
+        while(!aux1.esVacia()){
+            c1.encolar(aux1.tope());
+            aux1.desapilar();
+        }
+
+        while(!aux2.esVacia()){
+            c2.encolar(aux2.tope());
+            aux2.desapilar();
+        }
+
+        invertirColaSinPila(c1);
+        invertirColaSinPila(c2);
+
+        return coincidencia==k;
+
+    }
 
 
 
