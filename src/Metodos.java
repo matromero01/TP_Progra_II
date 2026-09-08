@@ -6,6 +6,8 @@ import TDAs.ColaTDA;
 import TDAs.PilaTDA;
 
 public class Metodos {
+
+
     // SECCION METODOS PILA
     // # Aclaración: siempre que creamos una Pila utilizamos PilaEstaticaA, pero todos los metodos funcionan
     // de igual manera con PilaEstaticaB.
@@ -124,6 +126,8 @@ public class Metodos {
 
 
     // SECCION METODOS COLA
+    // # Aclaración: siempre que creamos una Cola utilizamos ColaEstaticaA, pero todos los metodos funcionan
+    // de igual manera con ColaEstaticaB.
 
     public static ColaTDA pasarCola(ColaTDA origen) {
         ColaTDA aux = new ColaEstaticaA(100);
@@ -223,17 +227,9 @@ public class Metodos {
     }
 
 
-
-
-
-
-
-
-
-
-
-
     // SECCION METODOS COLA CON PRIORIDAD
+    // # Aclaración: siempre que creamos una Cola utilizamos ColaPrioridadEstaticaA, pero todos los metodos funcionan
+    // de igual manera con ColaPrioridadEstaticaB.
 
     public static ColaPrioridadTDA combinar(ColaPrioridadTDA cp1, ColaPrioridadTDA cp2) {
         ColaPrioridadTDA combinada = new ColaPrioridadA(100);
@@ -281,11 +277,7 @@ public class Metodos {
         return suma;
     }
 
-
-
-
-
-
-
-
+    public static ColaPrioridadTDA invertirColaConPrioridad(ColaPrioridadTDA c) {
+        return c;
+    }
 }

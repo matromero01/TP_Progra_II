@@ -21,13 +21,9 @@ public class ColaPrioridadA extends ColaPrioridadTDA {
         return cantidad == 0;
     }
 
-    private boolean esLlena() {
-        return cantidad == capacidad;
-    }
-
     @Override
     public void insertar(int elemento, int p) {
-        if (esLlena()) {
+        if (cantidad == capacidad) {
             throw new RuntimeException("Cola llena");
         }
         valores[cantidad] = elemento;
