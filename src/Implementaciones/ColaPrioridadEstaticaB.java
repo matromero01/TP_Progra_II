@@ -2,14 +2,14 @@ package Implementaciones;
 
 import TDAs.ColaPrioridadTDA;
 
-public class ColaPrioridadB extends ColaPrioridadTDA {
+public class ColaPrioridadEstaticaB extends ColaPrioridadTDA {
 
         private int[] valores;
         private int[] prioridades;
         private int cantidad;
         private int capacidad;
 
-    public ColaPrioridadB(int capacidad) {
+    public ColaPrioridadEstaticaB(int capacidad) {
         this.capacidad = capacidad;
         this.valores = new int[capacidad];
         this.prioridades = new int[capacidad];
