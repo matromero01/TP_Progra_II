@@ -1,5 +1,5 @@
 import Implementaciones.ColaEstaticaA;
-import Implementaciones.ColaPrioridadA;
+import Implementaciones.ColaPrioridadEstaticaA;
 import Implementaciones.PilaEstaticaA;
 import TDAs.ColaPrioridadTDA;
 import TDAs.ColaTDA;
@@ -232,7 +232,7 @@ public class Metodos {
     // de igual manera con ColaPrioridadEstaticaB.
 
     public static ColaPrioridadTDA combinar(ColaPrioridadTDA cp1, ColaPrioridadTDA cp2) {
-        ColaPrioridadTDA combinada = new ColaPrioridadA(100);
+        ColaPrioridadTDA combinada = new ColaPrioridadEstaticaA(100);
 
         // 1. Vaciamos cp1 por completo, pasando cada elemento a la cola combinada.
         while (!cp1.esVacia()) {
@@ -252,7 +252,7 @@ public class Metodos {
     }
 
     public static int sumarValoresPrioridadPar(ColaPrioridadTDA cp) {
-        ColaPrioridadTDA aux = new ColaPrioridadA(100);
+        ColaPrioridadTDA aux = new ColaPrioridadEstaticaA(100);
         int suma = 0;
 
         // 1. Vaciamos cp guardando cada par (valor, prioridad) en aux,
