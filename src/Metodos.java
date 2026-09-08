@@ -130,21 +130,13 @@ public class Metodos {
     // de igual manera con ColaEstaticaB.
 
     public static ColaTDA pasarCola(ColaTDA origen) {
-        ColaTDA aux = new ColaEstaticaA(100);
         ColaTDA nuevaCola = new ColaEstaticaA(100);
 
-        // 1. Apila el tope de origen en aux y desapila origen
-        while (!origen.esVacia()) {
-            aux.encolar(origen.primero());
+        // Pasamos todos los elementos a una cola nueva
+        while (!nuevaCola.esVacia()) {
+            nuevaCola.encolar(origen.primero());
             origen.desencolar();
         }
-
-        // 2. Lo mismo que antes pero de aux a la nuevaCola
-        while (!aux.esVacia()) {
-            nuevaCola.encolar(aux.primero());
-            aux.desencolar();
-        }
-
         return nuevaCola;
     }
 
@@ -152,36 +144,42 @@ public class Metodos {
         ColaTDA colaInvertida = new ColaEstaticaA(100);
         PilaTDA aux = new PilaEstaticaA(100);
 
+        // 1. Metemos todos los elementos en una pila
         while(!origen.esVacia()){
             aux.apilar(origen.primero());
             origen.desencolar();
         }
+        // 2. Los metemos en una cola (entran invertidos)
         while(!aux.esVacia()){
             colaInvertida.encolar(aux.tope());
             aux.desapilar();
         }
+
         return colaInvertida;
     }
 
     public static ColaTDA invertirColaSinPila(ColaTDA origen){
         if (origen.esVacia()) {
-            return origen; // caso base: cola vacia -> no hay nada que invertir
+            return origen; // 1. Caso base: Cola vacia
         }
 
         int primero = origen.primero();
         origen.desencolar();
-        invertirColaSinPila(origen); // invierte recursivamente el resto de la cola
-        System.out.println(primero);
-        origen.encolar(primero); // al volver, el que era el primero pasa al final
+
+        // 1. Inviertimos recursivamente el resto de la cola
+        invertirColaSinPila(origen);
+
+        // 2. Al volver, el que era el primero pasa al final
+        origen.encolar(primero);
+
         return origen;
     }
 
     public static boolean finalCoincide(ColaTDA c1, ColaTDA c2, int k){
-
-
         PilaTDA aux1 = new PilaEstaticaA(100);
         PilaTDA aux2 = new PilaEstaticaA(100);
 
+        // 1. Vaciamos las dos colas y metemos sus elementos en dos pilas
         while(!c1.esVacia()){
             aux1.apilar(c1.primero());
             c1.desencolar();
@@ -191,16 +189,17 @@ public class Metodos {
             c2.desencolar();
         }
 
+        // 2. Buscamos coincidencias entre los elementos del tope de las pilas, con el objetivo de que coincidencias == k
         int cont = 0;
         int coincidencia = 0;
         while (k>cont){
 
-            int a = aux1.tope();
-            int b = aux2.tope();
-
-            if (a==b) {
+            // Suma si coinciden
+            if (aux1.tope() == aux2.tope()) {
                 coincidencia ++;
             }
+
+            // 3. Vamos vaciando las pilas y metiendo los elementos en colas a medida que vamos comparando
             c1.encolar(aux1.tope());
             aux1.desapilar();
             c2.encolar(aux2.tope());
@@ -209,21 +208,21 @@ public class Metodos {
             cont ++;
         }
 
+        // 4. Terminamos de vacias las pilas y llenar las colas
         while(!aux1.esVacia()){
             c1.encolar(aux1.tope());
             aux1.desapilar();
         }
-
         while(!aux2.esVacia()){
             c2.encolar(aux2.tope());
             aux2.desapilar();
         }
 
+        // 5. Invertimos las colas, porque al pasar de cola a pila, se invirten los elementos. Volvemos al orden original
         invertirColaSinPila(c1);
         invertirColaSinPila(c2);
 
-        return coincidencia==k;
-
+        return coincidencia == k;
     }
 
 
