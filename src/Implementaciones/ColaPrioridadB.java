@@ -50,6 +50,13 @@ public class ColaPrioridadB extends ColaPrioridadTDA {
         }
 
         @Override
+        public int verPrioridadMax() {
+            if (esVacia()) throw new RuntimeException("Vacia");
+            return prioridades[cantidad - 1];
+        }
+
+
+        @Override
         public int extraerMax() {
             if (esVacia()) throw new RuntimeException("Vacia");
             cantidad--;

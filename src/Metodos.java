@@ -1,4 +1,6 @@
+import Implementaciones.ColaPrioridadA;
 import Implementaciones.PilaEstaticaA;
+import TDAs.ColaPrioridadTDA;
 import TDAs.PilaTDA;
 
 public class Metodos {
@@ -136,13 +138,51 @@ public class Metodos {
 
     // SECCION METODOS COLA CON PRIORIDAD
 
+    public static ColaPrioridadTDA combinar(ColaPrioridadTDA cp1, ColaPrioridadTDA cp2) {
+        ColaPrioridadTDA combinada = new ColaPrioridadA(100);
 
+        // 1. Vaciamos cp1 por completo, pasando cada elemento a la cola combinada.
+        while (!cp1.esVacia()) {
+            int prioridad = cp1.verPrioridadMax();
+            int elemento  = cp1.extraerMax();
+            combinada.insertar(elemento, prioridad);
+        }
 
+        // 2. Lo mismo con cp2.
+        while (!cp2.esVacia()) {
+            int prioridad = cp2.verPrioridadMax();
+            int elemento  = cp2.extraerMax();
+            combinada.insertar(elemento, prioridad);
+        }
 
+        return combinada;
+    }
 
+    public static int sumarValoresPrioridadPar(ColaPrioridadTDA cp) {
+        ColaPrioridadTDA aux = new ColaPrioridadA(100);
+        int suma = 0;
 
+        // 1. Vaciamos cp guardando cada par (valor, prioridad) en aux,
+        //    y de paso acumulamos los valores cuya prioridad es par.
+        while (!cp.esVacia()) {
+            int prioridad = cp.verPrioridadMax();
+            int elemento  = cp.extraerMax();
 
+            if (prioridad % 2 == 0)
+                suma = suma + elemento;
 
+            aux.insertar(elemento, prioridad);
+        }
+
+        // 2. Devolvemos todo a cp en el mismo orden en que salió de aux.
+        while (!aux.esVacia()) {
+            int prioridad = aux.verPrioridadMax();
+            int elemento  = aux.extraerMax();
+            cp.insertar(elemento, prioridad);
+        }
+
+        return suma;
+    }
 
 
 

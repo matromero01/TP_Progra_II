@@ -22,4 +22,8 @@ public abstract class ColaPrioridadTDA {
 
     public abstract boolean esVacia();
     // post: devuelve true si c no tiene elementos, false en caso contrario.
+
+    public abstract int verPrioridadMax();
+    // pre: c no está vacía.
+    // post: devuelve la prioridad del elemento de mayor prioridad, sin modificar la cola.
 }

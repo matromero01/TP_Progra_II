@@ -52,6 +52,12 @@ public class ColaPrioridadA extends ColaPrioridadTDA {
     }
 
     @Override
+    public int verPrioridadMax() {
+        if (esVacia()) throw new RuntimeException("Vacia");
+        return prioridades[indiceMax()];
+    }
+
+    @Override
     public int extraerMax() {
         if (esVacia()) throw new RuntimeException("Vacia");
         int idx = indiceMax();
