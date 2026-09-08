@@ -21,15 +21,9 @@ public class ColaPrioridadA extends ColaPrioridadTDA {
         return cantidad == 0;
     }
 
-    private boolean esLlena() {
-        return cantidad == capacidad;
-    }
 
     @Override
     public void insertar(int elemento, int p) {
-        if (esLlena()) {
-            throw new RuntimeException("Cola llena");
-        }
         valores[cantidad] = elemento;
         prioridades[cantidad] = p;
         cantidad++;
@@ -45,18 +39,21 @@ public class ColaPrioridadA extends ColaPrioridadTDA {
         return idxMax;
     }
 
-    @Override
+    // verMax(c) -> elemento
     public int verMax() {
-        if (esVacia()) throw new RuntimeException("Vacia");
+        if (esVacia()) {
+            throw new RuntimeException("Vacia");
+        }
         return valores[indiceMax()];
     }
 
-    @Override
+    // extraerMax(c) -> CCP
     public int extraerMax() {
-        if (esVacia()) throw new RuntimeException("Vacia");
+        if (esVacia()) {
+            throw new RuntimeException("Vacia");
+        }
         int idx = indiceMax();
         int valor = valores[idx];
-
         for (int i = idx; i < cantidad - 1; i++) {
             valores[i] = valores[i + 1];
             prioridades[i] = prioridades[i + 1];
