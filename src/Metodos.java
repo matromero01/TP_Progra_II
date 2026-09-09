@@ -233,14 +233,14 @@ public class Metodos {
     public static ColaPrioridadTDA combinar(ColaPrioridadTDA cp1, ColaPrioridadTDA cp2) {
         ColaPrioridadTDA combinada = new ColaPrioridadEstaticaA(100);
 
-        // 1. Vaciamos cp1 por completo, pasando cada elemento a la cola combinada.
+        // 1. Vaciamos cp1 por completo, pasando cada elemento a la cola combinada
         while (!cp1.esVacia()) {
             int prioridad = cp1.verPrioridadMax();
             int elemento  = cp1.extraerMax();
             combinada.insertar(elemento, prioridad);
         }
 
-        // 2. Lo mismo con cp2.
+        // 2. Lo mismo con cp2
         while (!cp2.esVacia()) {
             int prioridad = cp2.verPrioridadMax();
             int elemento  = cp2.extraerMax();
@@ -250,12 +250,16 @@ public class Metodos {
         return combinada;
     }
 
+    public static ColaPrioridadTDA invertirColaConPrioridad(ColaPrioridadTDA c) {
+        return c;
+    }
+
     public static int sumarValoresPrioridadPar(ColaPrioridadTDA cp) {
         ColaPrioridadTDA aux = new ColaPrioridadEstaticaA(100);
-        int suma = 0;
 
         // 1. Vaciamos cp guardando cada par (valor, prioridad) en aux,
-        //    y de paso acumulamos los valores cuya prioridad es par.
+        // y de paso acumulamos los valores cuya prioridad es par
+        int suma = 0;
         while (!cp.esVacia()) {
             int prioridad = cp.verPrioridadMax();
             int elemento  = cp.extraerMax();
@@ -266,7 +270,7 @@ public class Metodos {
             aux.insertar(elemento, prioridad);
         }
 
-        // 2. Devolvemos todo a cp en el mismo orden en que salió de aux.
+        // 2. Devolvemos todos los elementos a cp en el mismo orden en que salió de aux
         while (!aux.esVacia()) {
             int prioridad = aux.verPrioridadMax();
             int elemento  = aux.extraerMax();
@@ -274,9 +278,5 @@ public class Metodos {
         }
 
         return suma;
-    }
-
-    public static ColaPrioridadTDA invertirColaConPrioridad(ColaPrioridadTDA c) {
-        return c;
     }
 }
