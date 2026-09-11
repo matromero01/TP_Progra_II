@@ -9,7 +9,7 @@ public abstract class ColaTDA {
     // post: devuelve una cola vacía.
 
     public abstract void encolar(int elemento);
-    // pre: c debe estar llena.
+    // pre: c no debe estar llena.
     // post: debe agregar el elemento a c.
 
     public abstract void desencolar();

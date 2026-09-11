@@ -279,27 +279,27 @@ public class Metodos {
 
         return suma;
     }
-    
+
     public static ColaTDA invertirColaConColaPrioridad(ColaTDA c) {
 
-    ColaPrioridadTDA aux = new ColaPrioridadEstaticaA(100);
-    ColaTDA invertida = new ColaEstaticaA(100);
+        ColaPrioridadTDA aux = new ColaPrioridadEstaticaA(100);
+        ColaTDA invertida = new ColaEstaticaA(100);
 
-    int prioridad = 1;
+        int prioridad = 1;
 
-    // Pasamos los elementos de la cola a la cola con prioridad
-    while (!c.esVacia()) {
-        aux.insertar(c.primero(), prioridad);
-        c.desencolar();
-        prioridad++;
+        // Pasamos los elementos de la cola a la cola con prioridad
+        while (!c.esVacia()) {
+            aux.insertar(c.primero(), prioridad);
+            c.desencolar();
+            prioridad++;
+        }
+
+        // Los elementos de mayor prioridad salen primero
+        while (!aux.esVacia()) {
+            invertida.encolar(aux.verMax());
+            aux.extraerMax();
+        }
+
+        return invertida;
     }
-
-    // Los elementos de mayor prioridad salen primero
-    while (!aux.esVacia()) {
-        invertida.encolar(aux.verMax());
-        aux.extraerMax();
-    }
-
-    return invertida;
-}
 }
