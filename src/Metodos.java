@@ -250,10 +250,6 @@ public class Metodos {
         return combinada;
     }
 
-    public static ColaPrioridadTDA invertirColaConPrioridad(ColaPrioridadTDA c) {
-        return c;
-    }
-
     public static int sumarValoresPrioridadPar(ColaPrioridadTDA cp) {
         ColaPrioridadTDA aux = new ColaPrioridadEstaticaA(100);
 
